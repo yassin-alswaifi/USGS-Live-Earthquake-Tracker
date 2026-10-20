@@ -1,7 +1,5 @@
 import org.json.*;
-
 import java.math.BigDecimal;
-import java.util.List;
 
 public class DataProcessor {
     public void cleanData(String raw_data) {
