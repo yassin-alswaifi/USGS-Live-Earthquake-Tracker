@@ -3,7 +3,7 @@ import java.util.*;
 import java.math.BigDecimal;
 
 public class DataProcessor {
-    public void cleanData(String raw_data) {
+    public ArrayList<Feature> cleanData(String raw_data) {
         //Unfiltered
         JSONObject base_geoJSON = new JSONObject(raw_data);
 
@@ -16,10 +16,12 @@ public class DataProcessor {
         Long time;
         int data_len = raw_features.length();
         ArrayList<Feature> new_results = new ArrayList<>();
+        boolean found = false;
 
         System.out.println("Found " + data_len + " record(s).");
 
         for (int i = 0; i < data_len; i++) {
+            found = false;
             id = raw_features.getJSONObject(i).getString("id");
             title = raw_features.getJSONObject(i).getJSONObject("properties").getString("title");
             type = raw_features.getJSONObject(i).getJSONObject("properties").getString("type");
@@ -42,9 +44,12 @@ public class DataProcessor {
             System.out.println("\n");
             //-------------------------------//
 
-            Feature new_feature = new Feature(id, title, type, mag, depth, coords, time);
-            new_results.add(i, new_feature);
+            if (!found) {
+                Feature new_feature = new Feature(id, title, type, mag, depth, coords, time);
+                new_results.add(i, new_feature);
+            }
         }
 
+        return new_results;
     }
 }
