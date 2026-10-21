@@ -18,4 +18,6 @@ public class Feature {
         this.depth = depth;
         this.time = time;
     }
+
+    //To Do: Implement various info-fetch methods.
 }
