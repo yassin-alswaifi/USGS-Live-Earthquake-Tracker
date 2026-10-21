@@ -7,7 +7,7 @@ public class Feature {
     protected Long time;
 
     public Feature() {
-
+        // PLACEHOLDER
     }
     public Feature(String id, String title, String type, BigDecimal mag, BigDecimal depth, BigDecimal[] coords, Long time) {
         this.id = id;
@@ -19,5 +19,14 @@ public class Feature {
         this.time = time;
     }
 
-    //To Do: Implement various info-fetch methods.
+    //-------------------Get Methods-------------------//
+    public String getId(){return id;}
+    public String getTitle(){return title;}
+    public String getType(){return type;}
+    public BigDecimal getMag(){return mag;}
+    public BigDecimal[] getCoords(){return coords;}
+
+    //add conversion options
+    public Long getTime(){return time;}
+    //-------------------------------------------------//
 }
