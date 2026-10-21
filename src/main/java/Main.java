@@ -9,5 +9,10 @@ public class Main {
         System.out.println("Processing data...");
         dp.cleanData(raw_data);
 
+//        EXAMPLE
+//        Feature feat = new Feature();
+//        FeatureList<Feature> fl = new FeatureList<Feature>();
+//        fl.add(feat);
+
     }
 }

@@ -1,4 +1,5 @@
 import org.json.*;
+import java.util.*;
 import java.math.BigDecimal;
 
 public class DataProcessor {
@@ -14,6 +15,7 @@ public class DataProcessor {
         BigDecimal[] coords = new BigDecimal[2];
         Long time;
         int data_len = raw_features.length();
+        ArrayList<Feature> new_results = new ArrayList<>();
 
         System.out.println("Found " + data_len + " record(s).");
 
@@ -27,7 +29,7 @@ public class DataProcessor {
             depth = raw_features.getJSONObject(i).getJSONObject("geometry").getJSONArray("coordinates").getBigDecimal(2);
             time = raw_features.getJSONObject(i).getJSONObject("properties").getLong("time");
 
-            //Test Output
+            //----------Test Output----------//
             System.out.println("RECORD " + i);
             System.out.println("---------------");
             System.out.println("id: " + id);
@@ -38,6 +40,10 @@ public class DataProcessor {
             System.out.println("Depth: " + depth + " km");
             System.out.println("Time: " + time);
             System.out.println("\n");
+            //-------------------------------//
+
+            Feature new_feature = new Feature(id, title, type, mag, depth, coords, time);
+            new_results.add(i, new_feature);
         }
 
     }
