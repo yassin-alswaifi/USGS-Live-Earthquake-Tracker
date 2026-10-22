@@ -3,7 +3,7 @@ import java.util.*;
 import java.math.BigDecimal;
 
 public class DataProcessor {
-    public ArrayList<Feature> cleanData(String raw_data) {
+    public ArrayList<Feature> cleanData(String raw_data) { // Could take the FeatureList as a parameter too and just populate it here instead? Also split this method into smaller ones when done
         //Unfiltered
         JSONObject base_geoJSON = new JSONObject(raw_data);
 
