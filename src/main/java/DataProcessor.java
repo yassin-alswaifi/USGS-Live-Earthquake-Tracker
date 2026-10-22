@@ -12,9 +12,10 @@ public class DataProcessor {
         try (Scanner myReader = new Scanner(id_file)) {
             while (myReader.hasNextLine()) {
                 String cur = myReader.nextLine();
-                if (id == cur)
+                if (id.equals(cur)) {
                     System.out.println("ID found.");
                     found = true;
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("No file found, ID is unique.");
@@ -34,7 +35,9 @@ public class DataProcessor {
         Long time;
         int data_len = raw_features.length();
         ArrayList<Feature> new_results = new ArrayList<>();
-        PrintStream id_list = new PrintStream("id_log.txt");
+        PrintStream id_list = new PrintStream(
+                new FileOutputStream("id_log.txt", true)
+        );
 
         System.out.println("Found " + data_len + " record(s).");
 
