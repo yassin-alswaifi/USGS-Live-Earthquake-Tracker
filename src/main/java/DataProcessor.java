@@ -22,7 +22,7 @@ public class DataProcessor {
         }
         return found;
     }
-    public ArrayList<Feature> cleanData(String raw_data) throws FileNotFoundException { // Could take the FeatureList as a parameter too and just populate it here instead? Also split this method into smaller ones when done
+    public void cleanData(String raw_data, FeatureList f_list) throws FileNotFoundException { // Could take the FeatureList as a parameter too and just populate it here instead? Also split this method into smaller ones when done
         //Unfiltered
         JSONObject base_geoJSON = new JSONObject(raw_data);
 
@@ -73,6 +73,8 @@ public class DataProcessor {
         }
         id_list.close();
 
-        return new_results;
+        for (int i = 0; i < new_results.size(); i++) {
+            f_list.add(new_results.get(i));
+        }
     }
 }
