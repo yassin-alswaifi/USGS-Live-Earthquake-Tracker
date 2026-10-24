@@ -1,15 +1,25 @@
-import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class DevTools {
+    protected Boolean can_update = false;
     public void testRun() throws Exception {
         USGS_API_Wrapper uaw = new USGS_API_Wrapper();
         DataProcessor dp = new DataProcessor();
         System.out.println("Retrieving data...");
-        String raw_data = uaw.getAllEarthquakes('h');
+        String raw_data;
         System.out.println("Processing data...");
+        FeatureList fl = new FeatureList();
 
-        FeatureList<Feature> fl = new FeatureList<Feature>();
-        dp.cleanData(raw_data, fl);
-        fl.exportData();
+        fl.importData();
+        can_update = true;
+
+        while (can_update) {
+            raw_data = uaw.getAllEarthquakes('h');
+            dp.cleanData(raw_data, fl);
+            fl.exportData();
+            TimeUnit.MINUTES.sleep(1);
+        }
+
+
     }
 }

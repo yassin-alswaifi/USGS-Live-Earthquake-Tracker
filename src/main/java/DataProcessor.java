@@ -5,13 +5,13 @@ import java.io.*;
 
 public class DataProcessor {
 
-    private Boolean idExists(String id) {
+    public Boolean idExists(String id) {
         Boolean found = false;
 
         File id_file = new File("id_log.txt");
-        try (Scanner myReader = new Scanner(id_file)) {
-            while (myReader.hasNextLine()) {
-                String cur = myReader.nextLine();
+        try (Scanner Reader = new Scanner(id_file)) {
+            while (Reader.hasNextLine()) {
+                String cur = Reader.nextLine();
                 if (id.equals(cur)) {
                     System.out.println("ID found.");
                     found = true;
@@ -22,7 +22,7 @@ public class DataProcessor {
         }
         return found;
     }
-    public void cleanData(String raw_data, FeatureList f_list) throws FileNotFoundException { // Could take the FeatureList as a parameter too and just populate it here instead? Also split this method into smaller ones when done
+    public void cleanData(String raw_data, FeatureList f_list) throws FileNotFoundException {
         //Unfiltered
         JSONObject base_geoJSON = new JSONObject(raw_data);
 
@@ -55,7 +55,7 @@ public class DataProcessor {
             if (!found) {
                 Feature new_feature = new Feature(id, title, type, mag, depth, coords, time);
                 id_list.println(id);
-                new_results.add(i, new_feature);
+                new_results.add(new_feature);
 
                 //----------Test Output----------//
                 System.out.println("RECORD " + i);

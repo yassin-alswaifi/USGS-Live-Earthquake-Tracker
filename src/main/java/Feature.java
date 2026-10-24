@@ -24,6 +24,7 @@ public class Feature {
     public String getTitle(){return title;}
     public String getType(){return type;}
     public BigDecimal getMag(){return mag;}
+    public BigDecimal getDepth(){return depth;}
     public BigDecimal[] getCoords(){return coords;}
 
     //add conversion options
