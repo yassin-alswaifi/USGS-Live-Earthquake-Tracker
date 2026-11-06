@@ -37,20 +37,17 @@ public class USGS_API_Wrapper {
         BufferedReader reader = null;
 
         try {
-            // Create URL and open connection
             URL url = new URL(endpoint);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(10000); // 10 second timeout
             connection.setReadTimeout(10000);
 
-            // Check response code
             int responseCode = connection.getResponseCode();
             if (responseCode != 200) {
-                return null; // Return null for non-200 responses
+                return null;
             }
 
-            // Read response
             reader = new BufferedReader(
                     new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)
             );
@@ -66,10 +63,8 @@ public class USGS_API_Wrapper {
             return response.toString();
 
         } catch (Exception e) {
-            // Return null if any error occurs
             return null;
         } finally {
-            // Clean up resources
             try {
                 if (reader != null) {
                     reader.close();
@@ -78,7 +73,7 @@ public class USGS_API_Wrapper {
                     connection.disconnect();
                 }
             } catch (Exception e) {
-                // Ignore cleanup errors
+
             }
         }
     }

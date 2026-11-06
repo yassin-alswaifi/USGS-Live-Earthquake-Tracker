@@ -7,9 +7,9 @@ public class FeatureList extends LinkedList<Feature> {
         try {
             Feature cur;
             PrintStream feature_log = new PrintStream("feature_log.txt");
-            for (int i = 0; i < size(); i++) {
+            for (int i = size() - 1; i < size(); i--) {
                 cur = get(i);
-                if (i == size() - 1)
+                if (i == 0)
                     feature_log.print(cur.getId() + "#" + cur.getTitle() + "#" + cur.getType() + "#" + cur.getMag() + "#" + cur.getDepth() + "#" + cur.getCoords()[0] + "," + cur.getCoords()[1] + "#" + cur.getTime());
                 else
                     feature_log.println(cur.getId() + "#" + cur.getTitle() + "#" + cur.getType() + "#" + cur.getMag() + "#" + cur.getDepth() + "#" + cur.getCoords()[0] + "," + cur.getCoords()[1] + "#" + cur.getTime());
@@ -53,7 +53,7 @@ public class FeatureList extends LinkedList<Feature> {
                 coords[1] = BigDecimal.valueOf(double_coords[1]);
 
                 cur_feat = new Feature(id, title, type, mag, depth, coords, time);
-                add(cur_feat);
+                addFirst(cur_feat);
             }
         }
         catch (FileNotFoundException e) {

@@ -5,7 +5,7 @@ import java.io.*;
 
 public class DataProcessor {
 
-    public Boolean idExists(String id) {
+    private Boolean idExists(String id) {
         Boolean found = false;
 
         File id_file = new File("id_log.txt");
@@ -56,25 +56,13 @@ public class DataProcessor {
                 Feature new_feature = new Feature(id, title, type, mag, depth, coords, time);
                 id_list.println(id);
                 new_results.add(new_feature);
-
-                //----------Test Output----------//
-                System.out.println("RECORD " + i);
-                System.out.println("---------------");
-                System.out.println("id: " + id);
-                System.out.println("Title: " + title);
-                System.out.println("Type: " + type);
-                System.out.println("Magnitude: " + mag);
-                System.out.println("Coordinates: [" + coords[0] + ", " + coords[1] + "]");
-                System.out.println("Depth: " + depth + " km");
-                System.out.println("Time: " + time);
-                System.out.println("\n");
-                //-------------------------------//
             }
         }
         id_list.close();
 
-        for (int i = 0; i < new_results.size(); i++) {
-            f_list.add(new_results.get(i));
+        for (int i = new_results.size() - 1; i > -1; i--) {
+            f_list.addFirst(new_results.get(i));
         }
+        Collections.sort(f_list, (a, b) -> b.getTime().compareTo(a.getTime()));
     }
 }
