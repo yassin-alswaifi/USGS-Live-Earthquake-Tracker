@@ -17,7 +17,7 @@ public class FeatureList extends LinkedList<Feature> {
             feature_log.close();
         }
         catch (IndexOutOfBoundsException e) {
-            System.out.println("FeatureList is empty.");
+            //System.out.println("FeatureList is empty.");
         }
     }
     public void importData(){

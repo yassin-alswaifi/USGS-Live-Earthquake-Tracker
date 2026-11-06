@@ -19,6 +19,7 @@ public class Controller {
         // UI
         JFrame main_frame = new JFrame("Live Earthquake Tracker");
         main_frame.setSize(760, 720);
+        main_frame.setResizable(false);
         main_frame.setLocationRelativeTo(null);
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
