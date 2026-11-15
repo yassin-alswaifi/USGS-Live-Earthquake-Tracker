@@ -40,7 +40,7 @@ public class USGS_API_Wrapper {
             URL url = new URL(endpoint);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(10000); // 10 second timeout
+            connection.setConnectTimeout(10000);
             connection.setReadTimeout(10000);
 
             int responseCode = connection.getResponseCode();
