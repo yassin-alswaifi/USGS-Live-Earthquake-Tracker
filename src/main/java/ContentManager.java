@@ -8,15 +8,25 @@ public class ContentManager extends JFrame{
     protected LinkedList<Feature> last_six_features = new LinkedList<>();
     public FeatureList feature_list;
 
+    private boolean featureExists(Feature new_feature) {
+        for (int i = 0; i < last_six_features.size(); i++) {
+            if (new_feature == last_six_features.get(i))
+                return true;
+        }
+        return false;
+    }
     private void populateQueue() {
+        last_six_features.clear();
         int cur = 0;
         while (cur < feature_list.size() && cur < 6) {
-            if (last_six_features.size() < 6) {
-                last_six_features.add(feature_list.get(cur));
-            }
-            else {
-                last_six_features.removeFirst();
-                last_six_features.add(feature_list.get(cur));
+            if (!featureExists(feature_list.get(cur))) {
+                if (last_six_features.size() < 6) {
+                    last_six_features.add(feature_list.get(cur));
+                }
+                else {
+                    last_six_features.removeFirst();
+                    last_six_features.add(feature_list.get(cur));
+                }
             }
             cur++;
         }

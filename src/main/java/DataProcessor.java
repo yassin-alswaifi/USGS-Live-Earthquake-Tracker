@@ -31,7 +31,6 @@ public class DataProcessor {
 
         String id, title, type;
         BigDecimal mag, depth;
-        BigDecimal[] coords = new BigDecimal[2];
         Long time;
         int data_len = raw_features.length();
         ArrayList<Feature> new_results = new ArrayList<>();
@@ -42,6 +41,7 @@ public class DataProcessor {
         System.out.println("Found " + data_len + " record(s).");
 
         for (int i = 0; i < data_len; i++) {
+            BigDecimal[] coords = new BigDecimal[2];
             id = raw_features.getJSONObject(i).getString("id");
             title = raw_features.getJSONObject(i).getJSONObject("properties").getString("title");
             type = raw_features.getJSONObject(i).getJSONObject("properties").getString("type");

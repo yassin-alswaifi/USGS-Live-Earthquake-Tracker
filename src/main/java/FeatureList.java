@@ -23,17 +23,18 @@ public class FeatureList extends LinkedList<Feature> {
     public void importData(){
         File feature_file = new File("feature_log.txt");
         try (Scanner Reader = new Scanner(feature_file)) {
-            String[] feature_data, str_coords;
+            String[] feature_data;
             String id, title, type;
             BigDecimal mag, depth;
-            BigDecimal[] coords = new BigDecimal[2];
             Long time;
             Double double_mag;
             Double double_depth;
-            Double[] double_coords = new Double[2];
             Feature cur_feat;
 
             while (Reader.hasNextLine()) {
+                String[] str_coords;
+                BigDecimal[] coords = new BigDecimal[2];
+                Double[] double_coords = new Double[2];
                 String cur = Reader.nextLine();
                 feature_data = cur.split("#");
 

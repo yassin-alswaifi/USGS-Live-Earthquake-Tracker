@@ -47,6 +47,7 @@ public class Controller {
         while (can_update) {
             raw_data = uaw.getAllEarthquakes('h');
             dp.cleanData(raw_data, fl);
+            // UI //
             main_panel.remove(content_panel);
             content_panel = cm.getLatestContent();
             nav_bar.remove(last_updated);
@@ -55,6 +56,7 @@ public class Controller {
             main_panel.add(content_panel, BorderLayout.CENTER);
             main_panel.revalidate();
             main_panel.repaint();
+            /////////
             fl.exportData();
             TimeUnit.MINUTES.sleep(1);
         }
